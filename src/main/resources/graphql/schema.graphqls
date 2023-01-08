@@ -1,0 +1,34 @@
+type Query{
+    conferenceById(id: ID): Conference
+}
+
+type Conference {
+    id: ID
+    conferenceName: String
+    conferenceDescription: String
+    #conferenceStartDate: Date
+    conferenceLocation: String
+    conferenceSessions: [Session]
+}
+
+type Session {
+    id: ID
+    sessionName: String
+    sessionDescription: String
+    #sessionStartDate: Date
+    sessionSpeaker: [Speaker]
+    sessionRecorded: Boolean
+}
+
+type Speaker {
+    id: ID
+    speakerName: String
+    speakerAbstract: String
+    speakerCompany: String
+}
+
+enum Language {
+    GER, ENG
+}
+
+
