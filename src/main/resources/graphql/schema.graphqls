@@ -1,5 +1,13 @@
 type Query{
+    getAllConferences: [Conference]!
     conferenceById(id: ID): Conference
+}
+
+type Mutation{
+    createConference(conference: ConferenceInput): Conference
+    updateConference(id: ID, conference: ConferenceInput): Conference
+    partialUpdateConference(id: ID, conference: ConferenceInput): Conference
+    deleteConference(id:ID):Conference
 }
 
 type Conference {
@@ -7,7 +15,13 @@ type Conference {
     conferenceName: String
     conferenceDescription: String
     conferenceLocation: String
-    conferenceSessions: [Session]
+}
+
+# man kann nur input zum Server schicken, keinen type Confrenece bspw.
+input ConferenceInput {
+    conferenceName: String
+    conferenceDescription: String
+    conferenceLocation: String
 }
 
 type Session {
@@ -15,7 +29,8 @@ type Session {
     sessionName: String
     sessionDescription: String
     sessionSpeaker: [Speaker]
-    sessionRecorded: Boolean
+    isRecorded: Boolean
+    conferenceId: String
 }
 
 type Speaker {
