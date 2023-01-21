@@ -1,40 +1,38 @@
 package de.example.applicationgraphql;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Entity
 public class Conference {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private String conferenceName;
     private String conferenceDescription;
     private String conferenceLocation;
-    private List<Integer> sessionIds;
+
 
     public Conference(Integer id, String conferenceName, String conferenceDescription, String conferenceLocation, List<Integer> sessionIds) {
         this.id = id;
         this.conferenceName = conferenceName;
         this.conferenceDescription = conferenceDescription;
         this.conferenceLocation = conferenceLocation;
-        this.sessionIds = sessionIds;
     }
 
-    private static List<Integer> sessions = new ArrayList<>(Arrays.asList(1,2));
+    private static List<Integer> sessions = new ArrayList<>(Arrays.asList(1, 2));
 
-    private static List<Conference> conferences = Arrays.asList(
-            new Conference(1,
-                    "Typo Conference",
-                    "The Conference for Typography lovers.",
-                    "München",
-                    sessions)
-    );
 
-    public static Conference getById(Integer id) {
-            return conferences.stream().filter(conference -> conference.getId().equals(id))
-                    .findFirst().orElse(null);
+    public Conference() {
+
     }
+
 
     public Integer getId() {
         return id;
@@ -68,11 +66,13 @@ public class Conference {
         this.conferenceLocation = conferenceLocation;
     }
 
-    public List<Integer> getSessionIds() {
-        return sessionIds;
-    }
-
-    public void setSessionIds(ArrayList<Integer> sessionId) {
-        this.sessionIds = sessionIds;
+    @Override
+    public String toString() {
+        return "Conference{" +
+                "id=" + id +
+                ", conferenceName='" + conferenceName + '\'' +
+                ", conferenceDescription='" + conferenceDescription + '\'' +
+                ", conferenceLocation='" + conferenceLocation + '\'' +
+                '}';
     }
 }
