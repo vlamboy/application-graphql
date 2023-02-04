@@ -1,3 +1,11 @@
+type Conference {
+    id: ID
+    conferenceName: String
+    conferenceDescription: String
+    conferenceLocation: String
+    conferenceSession: [Session]
+}
+
 type Query{
     getAllConferences: [Conference]!
     conferenceById(id: ID): Conference
@@ -10,14 +18,6 @@ type Mutation{
     deleteConference(id:ID):Conference
 }
 
-type Conference {
-    id: ID
-    conferenceName: String
-    conferenceDescription: String
-    conferenceLocation: String
-}
-
-# man kann nur input zum Server schicken, keinen type Confrenece bspw.
 input ConferenceInput {
     conferenceName: String
     conferenceDescription: String
