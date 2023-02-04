@@ -9,16 +9,17 @@ public class Session {
     private Integer id;
     private String sessionName;
     private String sessionDescription;
-    //private Date sessionStartDate;
     private List<Integer> speakerIds;
     private Boolean sessionRecorded;
+    private String conferenceId;
 
-    public Session(Integer id, String sessionName, String sessionDescription, List<Integer> speakerIds, Boolean sessionRecorded) {
+    public Session(Integer id, String sessionName, String sessionDescription, List<Integer> speakerIds, Boolean sessionRecorded, String conferenceId) {
         this.id = id;
         this.sessionName = sessionName;
         this.sessionDescription = sessionDescription;
         this.speakerIds = speakerIds;
         this.sessionRecorded = sessionRecorded;
+        this.conferenceId = conferenceId;
     }
 
     private static List<Integer> speakers = Arrays.asList(1,2,3);
@@ -28,15 +29,15 @@ public class Session {
                     "How to not use Comic Sans",
                     "We show how to use good fonts.",
                     speakers,
-                    true),
+                    true, "1"),
             new Session(2,
                     "Why serifs are old fashioned",
                     "See in this session what modern font really look like.",
                     speakers,
-                    true)
+                    true, "1")
     );
 
-    public static Session getById(Integer id) {
+    public static Session getById(String id) {
         return sessions.stream().filter(session -> session.getId().equals(id)).findFirst().orElse(null);
     }
 
